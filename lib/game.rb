@@ -16,6 +16,7 @@ class Game
         @word = []
         @rounds_left = 0
         @human_guesses = []
+        @human_guesses_display[]
     end
 
     words = File.open("../repos/HangMan/10000_english_words.txt","r")
@@ -45,4 +46,5 @@ class Game
         end
     end
 
+end
 

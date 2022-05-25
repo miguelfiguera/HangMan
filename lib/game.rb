@@ -24,6 +24,8 @@ class Game
     def human_guesses(letter)
         if @word.includes?(letter)
             @human_guesses_good.push(letter)
+        else
+            puts "ups... that was a wrong guess..."
     end
 
     def rounds_left_method
@@ -41,7 +43,7 @@ class Game
     def pushing_nils_for_view
         num = @word.length
         num.times do
-            @display.push(nil)
+            @display.push("_")
         end
         puts @display
     end
@@ -67,6 +69,19 @@ class Game
             end
         end
     end
+
+#compound Methods
+
+def input_answer
+    answer = gets.chomp.downcase
+    if answer == "save"
+        #save the game
+    elsif answer.length == 1
+        human_guesses(answer)
+    end
+end
+
+def turns
 
 end
 

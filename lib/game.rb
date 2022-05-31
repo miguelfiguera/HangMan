@@ -11,19 +11,39 @@ end
 #Game Class
 
 class Game
-    attr_accessor :word, :rounds_left, :human_guesses_good, :display
+    attr_accessor :word, :dictionary, :rounds_left, :human_guesses_good, :display
     def initialize
         @word = []
         @rounds_left = 0
         @human_guesses_good = []
         @display[]
+        @dictionary=[]
     end
 
-    dictionary = File.open("../repos/HangMan/10000_english_words.txt","r")
+    dictionary_from_file = File.open("../repos/HangMan/10000_english_words.txt","r")
+
+    def filling_the_dictionary
+        dictionary_from_file.each do |word|
+            number= word.length
+            if number.between(6,12)
+                @dictionary.push(word.gsub!("\n",""))
+            end
+        end
+    end
+
+    def random_num
+        number = (rand * @dictionary.length).to_i
+    end
+
+    def choosing_the_word
+        @word = @dictionary[random_num].split("")
+    end
 
     def human_guesses(letter)
         if @word.includes?(letter)
             @human_guesses_good.push(letter)
+        elsif letter==Integer
+            puts "That is NOT a letter, please refrase"
         else
             puts "ups... that was a wrong guess..."
     end
@@ -78,4 +98,3 @@ end
 
 def game_prep 
 end
- 

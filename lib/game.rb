@@ -11,7 +11,7 @@ end
 #Game Class
 
 class Game
-    attr_accessor :word, :rounds_left, :human_guesses_good, :human_guesses_bad, :display
+    attr_accessor :word, :rounds_left, :human_guesses_good, :display
     def initialize
         @word = []
         @rounds_left = 0
@@ -19,7 +19,7 @@ class Game
         @display[]
     end
 
-    words = File.open("../repos/HangMan/10000_english_words.txt","r")
+    dictionary = File.open("../repos/HangMan/10000_english_words.txt","r")
 
     def human_guesses(letter)
         if @word.includes?(letter)
@@ -59,16 +59,7 @@ class Game
         end
         puts @display
     end
-        
 
-    def count_letters(letter)
-        number= @word.count(letter)
-        if 0 < number
-            number.times do
-                display.push(letter)
-            end
-        end
-    end
 
 #compound Methods
 
@@ -85,3 +76,6 @@ def turns
 
 end
 
+def game_prep 
+end
+ 

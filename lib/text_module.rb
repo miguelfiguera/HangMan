@@ -7,6 +7,7 @@ module Text
         1) There is a secret word
         2) You have an specific number of guesses.
         3) If you don't guess, you loose.
+        4) Only one letter at a time.
         HEREDOC
     end
 

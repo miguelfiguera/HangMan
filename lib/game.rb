@@ -93,10 +93,26 @@ class Game
         puts @display
     end
 
+    saved_player= File.new("saved_player.json","w")
+    saved_game = File.new("saved_game.json","w")
+
     def saving_the_game
+        game_class = JSON.dump ({
+            :word => @word
+            :rounds_left => @rounds_left
+            :human_guesses_good => @human_guesses_good
+            :display => @display
+            :dictionary => @dictionary
+        })
+        player_class = JSON.dump ({
+            :name => @name
+        })
+        saved_player.write(player_class)
+        saved_game.write(game_class)
     end
 
     def loading_the_game
+
     end
 
 #compound Methods
@@ -122,11 +138,17 @@ def turns
 end
 
 def game_prep 
-    create_player
-    really_text
-    greetings
-    filling_the_dictionary
-    choosing_the_word
-    rounds_left_method
-    pushing_nils_for_view
+    load_game_text
+    answer=gets.chomp.downcase
+    if answer == "y"
+        loading_the_game
+    else
+        create_player
+        really_text
+        greetings
+        filling_the_dictionary
+        choosing_the_word
+        rounds_left_method
+        pushing_nils_for_view
+    end
 end

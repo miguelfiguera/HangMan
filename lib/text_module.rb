@@ -24,6 +24,11 @@ module Text
     puts "Please choose a letter or write 'save' to save your game"
   end
 
+  def load_game_text
+    puts "Good day"
+    puts "Do you wish to load a previous game?"
+  end
+
   def final_text_method
     if victoria
       puts 'Well done, lad!'

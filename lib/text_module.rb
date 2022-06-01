@@ -2,7 +2,7 @@ module Text
     def greetings
         puts <<-HEREDOC
 
-        Hello! Welcome to the HangMan
+        Welcome to the HangMan
         Rules are simple:
         1) There is a secret word
         2) You have an specific number of guesses.
@@ -11,7 +11,7 @@ module Text
         HEREDOC
     end
 
-    def whats_your_name
+    def whats_your_name_text
         puts "What is your name?"
     end
 
@@ -19,7 +19,18 @@ module Text
         puts "Really? Ufff... I'm sorry... well lets continue..."
     end
 
+#method's text
+    def answer_text
+        puts "Please choose a letter or write 'save' to save your game"
+    end
 
+    def final_text_method
+        if victoria
+            puts "Well done, lad!"
+        elsif defeat
+            puts "DUDE, THAT MAN DIED BECAUSE OF YOU!... SHAME ON YOU!"
+        end
+    end
 #end of module
 
 end

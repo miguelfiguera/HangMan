@@ -1,31 +1,38 @@
 #Player Class
 
 class Player
-    attr_accessor :guesses_left
     attr_reader :name
     def initialize(name)
         @name=name
     end
+
+    def create_player
+        whats_your_name_text
+        name=gets.chomp
+        player=Player.new(name)
+    end
+
 end
 
 #Game Class
 
 class Game
     attr_accessor :word, :dictionary, :rounds_left, :human_guesses_good, :display
+    attr_reader :file
+    include Text
     def initialize
         @word = []
         @rounds_left = 0
         @human_guesses_good = []
         @display[]
         @dictionary=[]
+        @file = File.open("../repos/HangMan/10000_english_words.txt",chomp: true)
     end
 
-    dictionary_from_file = File.open("../repos/HangMan/10000_english_words.txt","r")
-
     def filling_the_dictionary
-        dictionary_from_file.each do |word|
+        @file.each do |word|
             number= word.length
-            if number.between(6,12)
+            if number.between?(6,12)
                 @dictionary.push(word.gsub!("\n",""))
             end
         end
@@ -42,7 +49,7 @@ class Game
     def human_guesses(letter)
         if @word.includes?(letter)
             @human_guesses_good.push(letter)
-        elsif letter==Integer
+        elsif letter==Integer || letter == Float
             puts "That is NOT a letter, please refrase"
         else
             puts "ups... that was a wrong guess..."
@@ -58,6 +65,10 @@ class Game
 
     def defeat
         @rounds_left== 0
+    end
+
+    def victoria
+        @display.eql?(@word)
     end
 
     def pushing_nils_for_view
@@ -80,10 +91,13 @@ class Game
         puts @display
     end
 
+    def saving_the_game
+        
 
 #compound Methods
 
 def input_answer
+    answer_text
     answer = gets.chomp.downcase
     if answer == "save"
         #save the game
@@ -93,8 +107,21 @@ def input_answer
 end
 
 def turns
-
+    until defeat
+    input_answer
+    display_goods_and_bads
+    update_rounds
+    break if victoria
+    end
+    final_text_method
 end
 
 def game_prep 
+    create_player
+    really_text
+    greetings
+    filling_the_dictionary
+    choosing_the_word
+    rounds_left_method
+    pushing_nils_for_view
 end

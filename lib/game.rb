@@ -58,6 +58,7 @@ class Game
     else
       puts 'ups... that was a wrong guess...'
     end
+  end
 
     def rounds_left_method
       @rounds_left = (@word.length * 1.5).to_i

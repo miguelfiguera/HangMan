@@ -26,7 +26,7 @@ module Text
 
   def load_game_text
     puts 'Good day'
-    puts 'Do you wish to load a previous game?'
+    puts 'Do you wish to load a previous game? Y/N'
   end
 
   def final_text_method

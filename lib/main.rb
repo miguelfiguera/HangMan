@@ -3,7 +3,7 @@ require_relative 'text_module'
 require 'pry'
 
 def game
-  binding.pry
+  game = Game.new
   game_prep
   turns
   go_again

@@ -112,7 +112,18 @@ class Game
     end
 
     def loading_the_game
-
+        saved_game = File.read("saved_game.json")
+        loaded = JSON.parse(saved_game)
+        saved_player= File.read("saved_player.json")
+        loaded_player = JSON.parse(saved_player)
+        #First the game
+        @word = loaded["word"]
+        @rounds_left = loaded["rounds_left"].to_i
+        @human_guesses_good = loaded["human_guesses_good"]
+        @display=loaded["display"]
+        @dictionary=loaded["dictionary"]
+        #the player
+        @name = loaded_player["name"]
     end
 
 #compound Methods
@@ -121,7 +132,7 @@ def input_answer
     answer_text
     answer = gets.chomp.downcase
     if answer == "save"
-        #save the game
+        saving_the_game
     elsif answer.length == 1
         human_guesses(answer)
     end

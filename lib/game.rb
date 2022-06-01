@@ -1,3 +1,5 @@
+require "json"
+
 #Player Class
 
 class Player
@@ -92,7 +94,10 @@ class Game
     end
 
     def saving_the_game
-        
+    end
+
+    def loading_the_game
+    end
 
 #compound Methods
 

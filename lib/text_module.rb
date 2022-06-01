@@ -35,7 +35,7 @@ module Text
 
   def final_text_method
     if victoria
-      puts 'Well done, lad!'
+      puts 'Well done, lad! YOU WON!'
     elsif defeat
       puts 'DUDE, THAT MAN DIED BECAUSE OF YOU!... SHAME ON YOU!'
       puts "The word was #{@word.join("")}."

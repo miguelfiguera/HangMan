@@ -102,19 +102,18 @@ class Game
     puts ""
   end
 
-  saved_player = File.new('saved_player.json', 'w')
-  saved_game = File.new('saved_game.json', 'w')
-
   def saving_the_game
+    saved_player = File.new('saved_player.json', 'w')
+    saved_game = File.new('saved_game.json', 'w')
     game_class = JSON.dump({
-                             word: @word,
-                             rounds_left: @rounds_left,
-                             human_guesses_good: @human_guesses_good,
-                             display: @display,
-                             dictionary: @dictionary
+                             :word=> @word,
+                             :rounds_left =>@rounds_left,
+                             :human_guesses_good=> @human_guesses_good,
+                             :display=> @display,
+                             :dictionary=> @dictionary
                            })
     player_class = JSON.dump({
-                               name: @name
+                               :name=> @name
                              })
     saved_player.write(player_class)
     saved_game.write(game_class)

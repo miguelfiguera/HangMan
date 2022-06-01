@@ -150,7 +150,7 @@ class Game
     until defeat
       input_answer
       display_goods_and_bads
-      update_rounds unless @good_guess = true
+      update_rounds unless @good_guess == true
       puts "You have #{@rounds_left} guesses left"
       break if victoria
     end

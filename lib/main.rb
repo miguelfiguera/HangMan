@@ -4,8 +4,9 @@ require 'pry'
 
 def game
   game = Game.new
-  game_prep
-  turns
+  game.game_prep
+  binding.pry
+  game.turns
   go_again
 end
 

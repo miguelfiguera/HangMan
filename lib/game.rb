@@ -11,17 +11,12 @@ class Player
     @name = name
   end
 
-  def create_player
-    whats_your_name_text
-    name = gets.chomp
-    player = Player.new(name)
-  end
 end
 
 # Game Class
 
 class Game
-  attr_accessor :word, :dictionary, :rounds_left, :human_guesses_good, :display
+  attr_accessor :good_guess, :word, :dictionary, :rounds_left, :human_guesses_good, :display
   attr_reader :file
 
   include Text
@@ -30,6 +25,7 @@ class Game
     @word = []
     @rounds_left = 0
     @human_guesses_good = []
+    @good_guess = false
     @display = []
     @dictionary = []
     @file = File.open('../10000_english_words.txt', chomp: true)
@@ -51,12 +47,14 @@ class Game
   end
 
   def human_guesses(letter)
-    if @word.includes?(letter)
+    if @word.include?(letter)
       @human_guesses_good.push(letter)
+      @good_guess = true
     elsif [Integer, Float].include?(letter)
       puts 'That is NOT a letter, please refrase'
     else
       puts 'ups... that was a wrong guess...'
+      @good_guess = false
     end
   end
 
@@ -81,19 +79,27 @@ class Game
     num.times do
       @display.push('_')
     end
-    puts @display
+    puts "This is the word:"
+    print @display
+  end
+
+  def create_player
+    whats_your_name_text
+    name = gets.chomp
+    player = Player.new(name)
   end
 
   def display_goods_and_bads
     @display = []
     @word.each do |letter|
       if @human_guesses_good.include?(letter)
-        display.push(letter)
+        @display.push(letter)
       else
-        display.push('_')
+        @display.push('_')
       end
     end
-    puts @display
+    print @display
+    puts ""
   end
 
   saved_player = File.new('saved_player.json', 'w')
@@ -129,8 +135,6 @@ class Game
     @name = loaded_player['name']
   end
 
-  # compound Methods
-
   def input_answer
     answer_text
     answer = gets.chomp.downcase
@@ -141,11 +145,13 @@ class Game
     end
   end
 
+
   def turns
     until defeat
       input_answer
       display_goods_and_bads
-      update_rounds
+      update_rounds unless @good_guess = true
+      puts "You have #{@rounds_left} guesses left"
       break if victoria
     end
     final_text_method

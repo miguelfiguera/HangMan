@@ -8,6 +8,9 @@ module Text
         2) You have an specific number of guesses.
         3) If you don't guess, you loose.
         4) Only one letter at a time.
+
+        Good luck, my friend.
+
     HEREDOC
   end
 
@@ -16,7 +19,8 @@ module Text
   end
 
   def really_text
-    puts "Really? Ufff... I'm sorry... well lets continue..."
+    puts "Really? Ufff...what a name..."
+    puts " I'm sorry... well lets continue..."
   end
 
   # method's text
@@ -34,6 +38,7 @@ module Text
       puts 'Well done, lad!'
     elsif defeat
       puts 'DUDE, THAT MAN DIED BECAUSE OF YOU!... SHAME ON YOU!'
+      puts "The word was #{@word.join("")}."
     end
   end
   # end of module
